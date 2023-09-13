@@ -31,13 +31,11 @@ public class RestAccountController {
         String pin = accountJson.getPin();
 
         try {
-            var account = accountService.createAccount(name, pin);
+            accountService.createAccount(name, pin);
         } catch (InvalidPinException e) {
             return new ResponseEntity<>("Длина пин-кода не соответсвует", HttpStatus.BAD_REQUEST);
         }
-
-
-        return new ResponseEntity<>("Новый аккаунт успешно создан", HttpStatus.OK);
+        return new ResponseEntity<>("Новый аккаунт создан", HttpStatus.OK);
 
     }
 
@@ -67,9 +65,7 @@ public class RestAccountController {
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-
-
-        return new ResponseEntity<>("Перевод выполнен успешно", HttpStatus.OK);
+        return new ResponseEntity<>("Перевод выполнен", HttpStatus.OK);
     }
 
     @PatchMapping(value = "/{fromAccountNumber}/transfer/{toAccountNumber}")

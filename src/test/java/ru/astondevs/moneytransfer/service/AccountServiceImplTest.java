@@ -37,7 +37,7 @@ class AccountServiceImplTest {
 
     @Test
     public void createAccount_WithValidValues_returnsCreatedAccount() {
-        String name = "John";
+        String name = "Nurkhayat";
         String pin = "1234";
 
         Account account = new Account(name, pin);
@@ -59,8 +59,8 @@ class AccountServiceImplTest {
 
     @Test
     void getAllAccounts_ReturnsAllAccountsFromRepository() {
-        var account = new Account("Jonh", "1234");
-        var account1 = new Account("Ivan", "4356");
+        var account = new Account("Nurkhayat", "1234");
+        var account1 = new Account("Chaykovskiy", "4356");
 
         var list = Arrays.asList(account, account1);
 
@@ -74,7 +74,7 @@ class AccountServiceImplTest {
     @Test
     void getAccountByAccountNumber_WithValidAccountNumber_ReturnsAccount() {
         var accountNumber = "6ce5e8d1-61af-4b92-9fa8-b2a2466c9bc4";
-        var account = new Account(accountNumber, "Jonh", "1234", BigDecimal.ZERO);
+        var account = new Account(accountNumber, "Petr", "1234", BigDecimal.ZERO);
 
         when(accountRepository.findById(accountNumber)).thenReturn(Optional.of(account));
 
@@ -88,7 +88,7 @@ class AccountServiceImplTest {
     public void deposit_WithValidAccountNumber_DepositsAmountAndSavesTransaction() {
         var accountNumber = "6ce5e8d1-61af-4b92-9fa8-b2a2466c9bc4";
         var amountToDeposit = new BigDecimal("100.00");
-        var existingAccount = new Account(accountNumber, "John Doe", "1245", new BigDecimal("500.00"));
+        var existingAccount = new Account(accountNumber, "Nurkhayat Sharipova", "1245", new BigDecimal("500.00"));
         var transaction = new Transaction(accountNumber, accountNumber, LocalTime.now(), amountToDeposit, Operation.DEPOSIT);
 
         when(accountRepository.findById(accountNumber)).thenReturn(Optional.of(existingAccount));
@@ -116,7 +116,7 @@ class AccountServiceImplTest {
     @Test
     void deposit_IncreasesAccountBalance() {
         var accountNumber = "6ce5e8d1-61af-4b92-9fa8-b2a2466c9bc4";
-        var existingAccount = new Account(accountNumber, "John Doe", "1245", BigDecimal.TEN);
+        var existingAccount = new Account(accountNumber, "John Brown", "1245", BigDecimal.TEN);
 
 
         when(accountRepository.findById(accountNumber)).thenReturn(Optional.of(existingAccount));
