@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class PracticalTestApplication {
+public class moneyTransferApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PracticalTestApplication.class, args);
+		SpringApplication.run(moneyTransferApplication.class, args);
 	}
 
 }
